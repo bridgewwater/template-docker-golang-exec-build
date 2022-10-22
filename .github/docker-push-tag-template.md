@@ -1,7 +1,7 @@
 ## need `New repository secret`
 
 - `ACCESS_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
-- `IMAGE_BUILD_OS_PATH` like alpine and let Dockerfile under this folder
+- `IMAGE_BUILD_OS_PATH` like `alpine` and let `Dockerfile` under this folder
 
 ## base template
 
