@@ -93,7 +93,7 @@ runContainerParentBuild:
 rmContainerParentBuild:
 	-docker rm -f ${INFO_TEST_BUILD_PARENT_CONTAINNER}
 
-pruneContainerParentBuild: rmContainerToTestBuild
+pruneContainerParentBuild: rmContainerParentBuild
 	-docker rmi -f ${INFO_TEST_BUILD_PARENT_IMAGE}
 
 testBuildLatest:
