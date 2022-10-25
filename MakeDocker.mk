@@ -11,7 +11,7 @@ INFO_TEST_BUILD_PARENT_CONTAINER ?= test-parent-template-docker-golang-exec-buil
 INFO_TEST_TAG_BUILD_CONTAINER_NAME ?= test-template-docker-golang-exec-build
 
 dockerEnv:
-	@echo "== docker env print start"
+	@echo "====== docker env print start"
 	@echo "INFO_BUILD_DOCKER_IMAGE_NAME        ${INFO_BUILD_DOCKER_IMAGE_NAME}"
 	@echo "INFO_BUILD_DOCKER_TAG               ${INFO_BUILD_DOCKER_TAG}"
 	@echo "INFO_BUILD_DOCKER_FILE              ${INFO_BUILD_DOCKER_FILE}"
@@ -22,7 +22,7 @@ dockerEnv:
 	@echo ""
 	@echo "INFO_TEST_TAG_BUILD_CONTAINER_NAME  ${INFO_TEST_TAG_BUILD_CONTAINER_NAME}"
 	@echo ""
-	@echo "== docker env print end"
+	@echo "====== docker env print end"
 
 dockerCleanImages:
 	(while :; do echo 'y'; sleep 3; done) | docker image prune
