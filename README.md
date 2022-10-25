@@ -45,5 +45,3 @@ $ make dockerTestRestartLatest
 # clean test build
 $ make dockerTestPruneLatest
 ```
-
-- just online use Dockerfile
