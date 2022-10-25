@@ -40,8 +40,6 @@ $ httpstat https://www.google.com
 ## fast dev
 
 ```bash
-$ make runContainerParentBuild
-
 # then test build as test/Dockerfile
 $ make dockerTestRestartLatest
 # clean test build
