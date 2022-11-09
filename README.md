@@ -13,12 +13,10 @@
 ## useage
 
 ```bash
-$ sudo curl -L --fail https://raw.githubusercontent.com/bridgewwater/template-docker-golang-exec-build/main/run.sh -o /usr/local/bin/httpstat
-$ sudo chmod +x /usr/local/bin/httpstat
+$ sudo curl -L --fail https://raw.githubusercontent.com/bridgewwater/template-docker-golang-exec-build/main/run.sh -o /usr/local/bin/golang-project-temple-base
+$ sudo chmod +x /usr/local/bin/golang-project-temple-base
 # then check
-$ httpstat --help
-# then check url like
-$ httpstat https://www.google.com
+$ golang-project-temple-base --help
 ```
 
 ## todo-list
@@ -30,7 +28,7 @@ $ httpstat https://www.google.com
 - rename target version `v1.17.13`
 - rename target GO_SRC_PATH `github.com/bridgewwater/golang-project-temple-base`
 - rename target CLI enter file name `main.go`
-- rename target `httpstat` to new exec tools name
+- rename target `golang-project-temple-base` to new exec tools name
 - rename target `-o golang-project-temple-base` to new out exec name
 - rename target exec path `github.com/bridgewwater/golang-project-temple-base/golang-project-temple-base` to new
 - rename target ENTRYPOINT `/app/golang-project-temple-base`

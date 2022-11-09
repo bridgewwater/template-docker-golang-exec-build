@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# run httpstat in a container
+# run golang-project-temple-base in a container
 
 set -e
 

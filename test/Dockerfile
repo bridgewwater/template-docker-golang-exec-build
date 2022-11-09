@@ -50,4 +50,4 @@ WORKDIR /app
 
 COPY --from=builder /go/src/github.com/bridgewwater/golang-project-temple-base/golang-project-temple-base .
 ENTRYPOINT ["/app/golang-project-temple-base"]
-# CMD ["/httpstat", "--help"]
+# CMD ["/app/golang-project-temple-base", "--help"]
