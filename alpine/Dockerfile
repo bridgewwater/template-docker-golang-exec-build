@@ -8,7 +8,7 @@
 # https://hub.docker.com/_/golang/tags
 FROM golang:1.19.2-buster as builder
 
-ARG GO_PATH_SOURCE_DIR=/go/src/
+ARG GO_PATH_SOURCE_DIR=/go/src
 WORKDIR ${GO_PATH_SOURCE_DIR}
 
 RUN git clone https://github.com/bridgewwater/golang-project-temple-base.git -b v1.17.13 --depth=1 github.com/bridgewwater/golang-project-temple-base
