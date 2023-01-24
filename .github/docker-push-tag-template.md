@@ -16,7 +16,7 @@ on:
       - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
 
 env:
-  # nmae of docker image
+  # name of docker image
   DOCKER_HUB_USER: bridgewwater
   IMAGE_BUILD_OS_PATH: alpine
   IMAGE_NAME: template-docker-golang-exec-build
@@ -41,7 +41,7 @@ jobs:
 
         # parse docker image id
         IMAGE_ID=$DOCKER_HUB_USER/$IMAGE_NAME
-        # lower case allgit
+        # lower case all git
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
         # ref get version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -54,7 +54,7 @@ jobs:
 
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
-        # seting tag
+        # setting tag
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
 
         # docker push
@@ -73,7 +73,7 @@ on:
       - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
 
 env:
-  # nmae of docker image
+  # name of docker image
   DOCKER_HUB_USER: bridgewwater
   IMAGE_BUILD_OS_PATH: alpine
   IMAGE_NAME: template-docker-golang-exec-build
@@ -101,7 +101,7 @@ jobs:
 
         # parse docker image id
         IMAGE_ID=$DOCKER_HUB_USER/$IMAGE_NAME
-        # lower case allgit
+        # lower case all git
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
         # ref get version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')

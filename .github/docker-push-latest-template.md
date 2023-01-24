@@ -16,7 +16,7 @@ on:
     branches: [ main ]
 
 env:
-  # nmae of docker image
+  # name of docker image
   DOCKER_HUB_USER: bridgewwater
   IMAGE_NAME: template-docker-golang-exec-build
 
@@ -67,7 +67,7 @@ on:
     branches: [ main ]
 
 env:
-  # nmae of docker image
+  # name of docker image
   DOCKER_HUB_USER: bridgewwater
   IMAGE_NAME: template-docker-golang-exec-build
 
