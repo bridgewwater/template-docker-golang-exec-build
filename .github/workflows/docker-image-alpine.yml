@@ -10,6 +10,7 @@ env:
   DOCKER_HUB_USER: bridgewwater
   IMAGE_BUILD_OS_PATH: alpine
   IMAGE_NAME: template-docker-golang-exec-build
+  DOCKER_IMAGE_PLATFORMS: linux/amd64,linux/386,linux/arm64,linux/arm
 
 jobs:
 
@@ -48,4 +49,4 @@ jobs:
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
         # build and push
-        docker buildx build -t $IMAGE_ID:$VERSION --platform=linux/arm,linux/arm64,linux/amd64 . --push
+        docker buildx build -t $IMAGE_ID:$VERSION --platform=$DOCKER_IMAGE_PLATFORMS . --push
