@@ -118,4 +118,12 @@ jobs:
         # build and push
         docker buildx build -t $IMAGE_ID:$VERSION --platform=$DOCKER_IMAGE_PLATFORMS . --push
 
+    - uses: softprops/action-gh-release@master # https://github.com/softprops/action-gh-release#-customizing
+      name: pre release
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        ## with permissions to create releases in the other repo
+        token: "${{ secrets.GITHUB_TOKEN }}"
+#        body_path: ${{ github.workspace }}-CHANGELOG.txt
+        prerelease: true
 ```
