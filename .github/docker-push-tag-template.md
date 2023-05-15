@@ -27,7 +27,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
         cd $IMAGE_BUILD_OS_PATH && docker build . --file Dockerfile --tag $IMAGE_NAME
@@ -79,13 +79,15 @@ env:
   IMAGE_NAME: template-docker-golang-exec-build
   DOCKER_IMAGE_PLATFORMS: linux/amd64,linux/386,linux/arm64,linux/arm
 
+permissions:
+  contents: write
+  discussions: write
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: "Login into registry as user: $DOCKER_HUB_USER"
       run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u $DOCKER_HUB_USER --password-stdin
     - name: Docker buildx ready

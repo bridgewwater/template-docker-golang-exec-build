@@ -26,7 +26,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag $IMAGE_NAME
@@ -78,7 +78,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: "Login into registry as user: $DOCKER_HUB_USER"
       run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u $DOCKER_HUB_USER --password-stdin
     - name: Docker buildx ready
