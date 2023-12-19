@@ -48,7 +48,8 @@ jobs:
       docker_hub_user: 'bridgewwater'
       docker_image_name: 'bridgewwater/template-docker-golang-exec-build'
       build_branch_name: 'main'
-      push_remote_flag: ${{ github.event.pull_request.merged == true }}
+      # push_remote_flag: ${{ github.event.pull_request.merged == true }}
+      push_remote_flag: true
 
   docker-image-tag:
     name: docker-image-tag
