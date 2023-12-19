@@ -39,6 +39,8 @@ $ golang-project-temple-base --help
 - rename docker hub user `bridgewwater` to new org or user
 - rename docker hub `template-docker-golang-exec-build` to new docker image name
 - add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `DOCKERHUB_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
+- change `DOCKER_IMAGE_PLATFORMS: linux/amd64,linux/arm64/v8` to your need [docker buildx](https://docs.docker.com/buildx/working-with-buildx/)
+  - also change `jobs.docker-image-buildx.strategy.matrix.docker_image.[platform]` same as `DOCKER_IMAGE_PLATFORMS`
 - change `push_remote_flag: ${{ github.event.pull_request.merged == true }}` to let latest tag push to docker hub
 
 ### env
