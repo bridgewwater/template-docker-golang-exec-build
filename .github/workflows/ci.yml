@@ -61,7 +61,7 @@ jobs:
     with:
       docker_hub_user: 'bridgewwater'
       docker_image_name: 'bridgewwater/template-docker-golang-exec-build'
-      push_remote_flag: false
+      # push_remote_flag: false
 
   deploy-tag:
     needs:
