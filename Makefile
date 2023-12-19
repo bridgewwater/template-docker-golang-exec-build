@@ -1,33 +1,28 @@
-.PHONY: test check clean dist
+.PHONY: test check clean dist all
 
 TOP_DIR := $(shell pwd)
 
-ENV_DIST_VERSION=latest
+# default latest
+ENV_DIST_VERSION =latest
+ROOT_NAME =template-docker-golang-exec-build
 
-ROOT_BUILD_FOLDER ?= build
-ROOT_BUILD_PATH ?= ./${ROOT_BUILD_FOLDER}
-ROOT_LOG_PATH ?= ./log
-ROOT_DIST_PATH ?= ./dist
+# MakeImage.mk settings start
+ROOT_OWNER =bridgewwater
+ROOT_PARENT_SWITCH_TAG :=3.19.0
+# for image local build
+INFO_TEST_BUILD_DOCKER_PARENT_IMAGE =alpine
+INFO_BUILD_DOCKER_FILE =Dockerfile
+INFO_TEST_BUILD_DOCKER_FILE =build.dockerfile
+INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS =
+# MakeImage.mk settings end
 
-include MakeDist.mk
-include MakeDocker.mk
+include z-MakefileUtils/MakeImage.mk
 
 env: dockerEnv
-	@echo "====== show root build evn start" =====
-	@echo ""
-	@echo "ROOT_BUILD_FOLDER              ${ROOT_BUILD_FOLDER}"
-	@echo "ROOT_BUILD_PATH                ${ROOT_BUILD_PATH}"
-	@echo "ROOT_DIST_PATH                 ${ROOT_DIST_PATH}"
-	@echo "ROOT_LOG_PATH                  ${ROOT_LOG_PATH}"
-	@echo ""
-	@echo "====== show root build evn en" =====
 
+all: dockerTestRestartLatest
+
+clean: dockerTestPruneLatest
 
 help: helpDocker
-	@echo "-- helper root"
-	@echo ""
-	@echo "Before run this project in docker must check docker and network"
-	@echo ""
-	@echo "make clean - remove binary file and log files"
-	@echo ""
-	@echo "local test build use"
+	@echo "Before run this project in docker must install docker"

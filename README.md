@@ -1,3 +1,7 @@
+[![GitHub license](https://img.shields.io/github/license/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build)
+[![GitHub latest SemVer tag)](https://img.shields.io/github/v/tag/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build/tags)
+[![GitHub release)](https://img.shields.io/github/v/release/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build/releases)
+
 # template-docker-golang-exec-build
 
 ![docker version semver](https://img.shields.io/docker/v/bridgewwater/template-docker-golang-exec-build?sort=semver)
@@ -6,11 +10,7 @@
 
 - docker hub see [https://hub.docker.com/r/bridgewwater/template-docker-golang-exec-build](https://hub.docker.com/r/bridgewwater/template-docker-golang-exec-build)
 
-## source repo
-
-[https://github.com/bridgewwater/template-docker-golang-exec-build](https://github.com/bridgewwater/template-docker-golang-exec-build)
-
-## useage
+## usage
 
 ```bash
 $ sudo curl -L --fail https://raw.githubusercontent.com/bridgewwater/template-docker-golang-exec-build/main/run.sh -o /usr/local/bin/golang-project-temple-base
@@ -19,27 +19,57 @@ $ sudo chmod +x /usr/local/bin/golang-project-temple-base
 $ golang-project-temple-base --help
 ```
 
-## todo-list
+## source repo
+
+[https://github.com/bridgewwater/template-docker-golang-exec-build](https://github.com/bridgewwater/template-docker-golang-exec-build)
+
+### todo-list
 
 - rename `bridgewwater/template-docker-golang-exec-build` to new github url
-- rename `bridgewwater` to new org or user
-- rename `template-docker-golang-exec-build` to new docker image name
-- rename target url `https://github.com/bridgewwater/golang-project-temple-base.git`
-- rename target version `v1.17.13`
-- rename target GO_SRC_PATH `github.com/bridgewwater/golang-project-temple-base`
-- rename target CLI enter file name `main.go`
-- rename target `golang-project-temple-base` to new exec tools name
-- rename target `-o golang-project-temple-base` to new out exec name
-- rename target exec path `github.com/bridgewwater/golang-project-temple-base/golang-project-temple-base` to new
-- rename target ENTRYPOINT `/app/golang-project-temple-base`
-- add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `ACCESS_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
 - go cli repo [https://github.com/bridgewwater/golang-project-temple-base](https://github.com/bridgewwater/golang-project-temple-base)
+- rename go cli target version `GO_PKG_RELEASE_VERSION=2.1.0` (do not add prefix `v`)
+- rename go cli target GO_SRC_PATH `github.com/bridgewwater/golang-project-temple-base`
+- rename go cli target url `https://${GO_ENV_PACKAGE_NAME}.git`
+- rename go cli target Build PATH `build/${GO_ENV_ROOT_BUILD_BIN_NAME}`
+- rename go cli target exec build entrance path `cmd/golang-project-temple-base/main.go` to new
+- rename go cli target `golang-project-temple-base` to new exec tools name
+- rename go cli target build flag `-installsuffix cgo` to new
+- rename go cli target ENTRYPOINT `/app/golang-project-temple-base`
+- rename docker hub user `bridgewwater` to new org or user
+- rename docker hub `template-docker-golang-exec-build` to new docker image name
+- add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `DOCKERHUB_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
 
-## fast dev
+### env
+
+- minimum go version: go 1.18
+- change `go 1.18`, `^1.18`, `1.18.10-buster`, `1.18.10` to new go version
+
+### dev mode
 
 ```bash
+# see help
+$ make help
+# see or check build env
+$ make env
+
+# fast build
+$ make all
+# clean build
+$ make clean
+
 # then test build as test/Dockerfile
 $ make dockerTestRestartLatest
 # clean test build
 $ make dockerTestPruneLatest
 ```
+
+## Contributing
+
+[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4-ff69b4.svg)](.github/CONTRIBUTING_DOC/CODE_OF_CONDUCT.md)
+[![GitHub contributors](https://img.shields.io/github/contributors/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build/graphs/contributors)
+
+We welcome community contributions to this project.
+
+Please read [Contributor Guide](.github/CONTRIBUTING_DOC/CONTRIBUTING.md) for more information on how to get started.
+
+请阅读有关 [贡献者指南](.github/CONTRIBUTING_DOC/zh-CN/CONTRIBUTING.md) 以获取更多如何入门的信息
