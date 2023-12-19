@@ -12,7 +12,7 @@
     "action"
   ],
   "author": "bridgewwater",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/bridgewwater/template-docker-golang-exec-build/issues"
   },

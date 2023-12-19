@@ -35,9 +35,11 @@ $ golang-project-temple-base --help
 - rename go cli target `golang-project-temple-base` to new exec tools name
 - rename go cli target build flag `-installsuffix cgo` to new
 - rename go cli target ENTRYPOINT `/app/golang-project-temple-base`
+- rename local `INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS` at Makefile
 - rename docker hub user `bridgewwater` to new org or user
 - rename docker hub `template-docker-golang-exec-build` to new docker image name
 - add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `DOCKERHUB_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
+- change `push_remote_flag: ${{ github.event.pull_request.merged == true }}` to let latest tag push to docker hub
 
 ### env
 
