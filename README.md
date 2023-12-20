@@ -12,6 +12,14 @@
 
 ## usage
 
+To display help:
+
+```bash
+$ docker run --rm -i bridgewwater/template-docker-golang-exec-build --help
+```
+
+use as exec:
+
 ```bash
 $ sudo curl -L --fail https://raw.githubusercontent.com/bridgewwater/template-docker-golang-exec-build/main/run.sh -o /usr/local/bin/golang-project-temple-base
 $ sudo chmod +x /usr/local/bin/golang-project-temple-base
@@ -34,7 +42,7 @@ $ golang-project-temple-base --help
 - rename go cli target exec build entrance path `cmd/golang-project-temple-base/main.go` to new
 - rename go cli target `golang-project-temple-base` to new exec tools name
 - rename go cli target build flag `-installsuffix cgo` to new
-- rename go cli target ENTRYPOINT `/app/golang-project-temple-base`
+- rename go cli target ENTRYPOINT `/bin/golang-project-temple-base`
 - rename local `INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS` at Makefile
 - rename docker hub user `bridgewwater` to new org or user
 - rename docker hub `template-docker-golang-exec-build` to new docker image name

@@ -19,6 +19,9 @@ WORKDIR ${GO_PATH_SOURCE_DIR}
 RUN git clone https://${GO_ENV_PACKAGE_NAME}.git -b v${GO_PKG_RELEASE_VERSION} --depth=1 ${GO_ENV_PACKAGE_NAME}
 WORKDIR ${GO_PATH_SOURCE_DIR}/${GO_ENV_PACKAGE_NAME}
 
+RUN export GOARCH=$(go env GOHOSTARCH)
+RUN export GOOS=$(go env GOHOSTOS)
+
 RUN go mod download -x
 
 RUN CGO_ENABLED=0 \
@@ -47,6 +50,6 @@ ARG GO_PATH_SOURCE_DIR=/go/src
 RUN mkdir /app
 WORKDIR /app
 
-COPY --from=builder ${GO_PATH_SOURCE_DIR}/${GO_ENV_PACKAGE_NAME}/${GO_ENV_ROOT_BUILD_BIN_PATH} .
-ENTRYPOINT [ "/app/golang-project-temple-base" ]
-# CMD ["/app/golang-project-temple-base", "--help"]
+COPY --from=builder ${GO_PATH_SOURCE_DIR}/${GO_ENV_PACKAGE_NAME}/${GO_ENV_ROOT_BUILD_BIN_PATH} /bin/
+ENTRYPOINT [ "golang-project-temple-base" ]
+# CMD ["golang-project-temple-base", "--help"]
