@@ -4,18 +4,18 @@
 
 # template-docker-golang-exec-build
 
-![docker version semver](https://img.shields.io/docker/v/bridgewwater/template-docker-golang-exec-build?sort=semver)
-[![docker image size](https://img.shields.io/docker/image-size/bridgewwater/template-docker-golang-exec-build)](https://hub.docker.com/r/bridgewwater/template-docker-golang-exec-build)
-[![docker pulls](https://img.shields.io/docker/pulls/bridgewwater/template-docker-golang-exec-build)](https://hub.docker.com/r/bridgewwater/template-docker-golang-exec-build/tags?page=1&ordering=last_updated)
+[![docker version semver](https://img.shields.io/docker/v/template-hub-user/template-docker-golang-exec-build?sort=semver)](https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build)
+[![docker image size](https://img.shields.io/docker/image-size/template-hub-user/template-docker-golang-exec-build)](https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build)
+[![docker pulls](https://img.shields.io/docker/pulls/template-hub-user/template-docker-golang-exec-build)](https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build/tags?page=1&ordering=last_updated)
 
-- docker hub see [https://hub.docker.com/r/bridgewwater/template-docker-golang-exec-build](https://hub.docker.com/r/bridgewwater/template-docker-golang-exec-build)
+- docker hub see [https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build](https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build)
 
 ## usage
 
 To display help:
 
 ```bash
-$ docker run --rm -i bridgewwater/template-docker-golang-exec-build --help
+$ docker run --rm -i template-hub-user/template-docker-golang-exec-build --help
 ```
 
 use as exec:
@@ -44,8 +44,8 @@ $ golang-project-temple-base --help
 - rename go cli target build flag `-installsuffix cgo` to new
 - rename go cli target ENTRYPOINT `/bin/golang-project-temple-base`
 - rename local `INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS` at Makefile
-- rename docker hub user `bridgewwater` to new org or user
-- rename docker hub `template-docker-golang-exec-build` to new docker image name
+- rename docker hub user `template-hub-user` to new org or user
+- rename docker hub `template-hub-user/template-docker-golang-exec-build` to new docker image name
 - add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `DOCKERHUB_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
 - change `DOCKER_IMAGE_PLATFORMS: linux/amd64,linux/arm64/v8` to your need [docker buildx](https://docs.docker.com/buildx/working-with-buildx/)
   - also change `jobs.docker-image-buildx.strategy.matrix.docker_image.[platform]` same as `DOCKER_IMAGE_PLATFORMS`

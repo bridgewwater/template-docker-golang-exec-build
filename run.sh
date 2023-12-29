@@ -5,7 +5,7 @@
 set -e
 
 VERSION="latest"
-IMAGE="bridgewwater/template-docker-golang-exec-build:$VERSION"
+IMAGE="template-hub-user/template-docker-golang-exec-build:$VERSION"
 
 # Setup options for connecting to docker host
 if [ -z "$DOCKER_HOST" ]; then
