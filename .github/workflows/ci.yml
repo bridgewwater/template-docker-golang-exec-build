@@ -7,7 +7,15 @@ on:
     branches:
       - 'main'
       - 'release-*'
-      - 'hotfix-*'
+      - 'FE-*'
+      - '*-feature-*'
+      - 'BF-*'
+      - '*-bug-*'
+      - 'PU-*'
+      - 'DOC-*'
+      - '*-documentation-*'
+      - '*-hotfix-*'
+      - 'fix-*'
     tags:
       - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
   pull_request:
@@ -17,19 +25,16 @@ on:
       - opened
       - reopened
       - closed
-    branches:
-      - 'main'
-      - 'release-*'
-      - 'iteration-*'
-      - 'FE-*'
-      - 'BF-*'
-      - 'PU-*'
-      - 'DOC-*'
-      - 'hotfix-*'
+    # branches:
+    #   - 'main'
+    #   - 'release-*'
+    #   - 'DOC-*'
+    #   - 'hotfix-*'
 
-permissions:
+permissions: # https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#permissions
   contents: write
   discussions: write
+  packages: write
 
 jobs:
   version:
@@ -37,37 +42,59 @@ jobs:
     uses: ./.github/workflows/version.yml
     secrets: inherit
 
-  docker-image-latest:
-    name: docker-image-latest
+  # docker-buildx-bake-hubdocker-latest:
+  #   name: docker-buildx-bake-hubdocker-latest
+  #   needs:
+  #     - version
+  #   uses: ./.github/workflows/docker-buildx-bake-hubdocker-latest.yml
+  #   # if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
+  #   with:
+  #     # push_remote_flag: ${{ github.ref == 'refs/heads/main' }}
+  #     push_remote_flag: ${{ github.event.pull_request.merged == true }}
+  #   secrets:
+  #     DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
+
+  docker-buildx-bake-multi-latest:
+    name: docker-buildx-bake-multi-latest
     needs:
       - version
-    uses: ./.github/workflows/docker-image-latest.yml
-    if: ${{ github.base_ref == 'main' || ( github.event_name == 'push' && ( github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release-') ) ) }}
-    secrets: inherit
+    uses: ./.github/workflows/docker-buildx-bake-multi-latest.yml
+    # if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
     with:
-      docker_hub_user: 'template-hub-user'
-      docker_image_name: 'template-hub-user/template-docker-golang-exec-build'
-      build_branch_name: 'main'
-      push_remote_flag: ${{ github.event.pull_request.merged == true }}
+      ghcr_package_owner_name: ${{ github.repository_owner }} # required for ghcr.io
       # push_remote_flag: ${{ github.ref == 'refs/heads/main' }}
+      push_remote_flag: ${{ github.event.pull_request.merged == true }}
+      # push_remote_flag: true
+    secrets:
+      DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
 
-  docker-image-tag:
-    name: docker-image-tag
+  # docker-buildx-bake-hubdocker-tag:
+  #   name: docker-buildx-bake-hubdocker-tag
+  #   needs:
+  #     - version
+  #   uses: ./.github/workflows/docker-buildx-bake-hubdocker-tag.yml
+  #   if: startsWith(github.ref, 'refs/tags/')
+  #   # with:
+  #     # push_remote_flag: true # default is true
+  #   secrets:
+  #     DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
+
+  docker-buildx-bake-multi-tag:
+    name: docker-buildx-bake-multi-tag
     needs:
-     - version
-    uses: ./.github/workflows/docker-image-tag.yml
+      - version
+    uses: ./.github/workflows/docker-buildx-bake-multi-tag.yml
     if: startsWith(github.ref, 'refs/tags/')
-    secrets: inherit
     with:
-      docker_hub_user: 'template-hub-user'
-      docker_image_name: 'template-hub-user/template-docker-golang-exec-build'
-      # docker_tag_postfix: '-alpine'
-      # push_remote_flag: false
+      ghcr_package_owner_name: ${{ github.repository_owner }} # required for ghcr.io
+      # push_remote_flag: true # default is true
+    secrets:
+      DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
 
   deploy-tag:
     needs:
       - version
-      - docker-image-tag
+      - docker-buildx-bake-multi-tag
     name: deploy-tag
     uses: ./.github/workflows/deploy-tag.yml
     if: startsWith(github.ref, 'refs/tags/')
