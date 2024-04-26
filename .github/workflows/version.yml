@@ -46,6 +46,23 @@ jobs:
       cc_status: ${{ steps.check-version.outputs.cc-latest-status }}
 
     steps:
+
+      - name: check github context
+        run: |
+          echo "github.run_id: ${{ github.run_id }}"
+          echo "github.run_number: ${{ github.run_number }}"
+          echo "github.run_attempt: ${{ github.run_attempt }}"
+          echo "github.actor_id: ${{ github.actor_id }}"
+          echo ""
+          echo "github.workflow: ${{ github.workflow }}"
+          echo "github.workflow_ref: ${{ github.workflow_ref }}"
+          echo "github.workspace: ${{ github.workspace }}"
+          echo "github.job: ${{ github.job }}"
+          echo ""
+          echo "runner.os: ${{ runner.os }}"
+          echo "runner.arch: ${{ runner.arch }}"
+          echo "runner.temp: ${{ runner.temp }}"
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -57,7 +74,6 @@ jobs:
 
       - name: check version and conventional
         run: |
-          echo "sha: ${{ steps.check-version.outputs.sha }}"
           echo "env SHA-SHORT: ${{ env.SHA-SHORT }}"
           echo "short-sha: ${{ steps.check-version.outputs.short-sha }}"
           echo "tag-version: ${{ steps.check-version.outputs.tag-version }}"

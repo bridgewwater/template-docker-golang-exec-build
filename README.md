@@ -1,8 +1,10 @@
+# template-docker-golang-exec-build
+
+[![ci](https://github.com/bridgewwater/template-docker-golang-exec-build/actions/workflows/ci.yml/badge.svg)](https://github.com/bridgewwater/template-docker-golang-exec-build/actions/workflows/ci.yml)
+
 [![GitHub license](https://img.shields.io/github/license/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build)
 [![GitHub latest SemVer tag)](https://img.shields.io/github/v/tag/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build/tags)
 [![GitHub release)](https://img.shields.io/github/v/release/bridgewwater/template-docker-golang-exec-build)](https://github.com/bridgewwater/template-docker-golang-exec-build/releases)
-
-# template-docker-golang-exec-build
 
 [![docker version semver](https://img.shields.io/docker/v/template-hub-user/template-docker-golang-exec-build?sort=semver)](https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build)
 [![docker image size](https://img.shields.io/docker/image-size/template-hub-user/template-docker-golang-exec-build)](https://hub.docker.com/r/template-hub-user/template-docker-golang-exec-build)
@@ -46,14 +48,24 @@ $ golang-project-temple-base --help
 - rename local `INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS` at Makefile
 - rename docker hub user `template-hub-user` to new org or user
 - rename docker hub `template-hub-user/template-docker-golang-exec-build` to new docker image name
-- add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `DOCKERHUB_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
+
+- rename docker repo name at `docker-bake.hcl`
+    - `template-docker-runtime-alpine` to new docker image name
+    - `image-all` to change `platforms`
+
+- use github action for this workflow push to docker hub, must add
+    - variables `ENV_DOCKERHUB_OWNER` user of docker hub
+    - variables `ENV_DOCKERHUB_REPO_NAME` repo name of docker hub
+    - add [secrets](https://github.com/bridgewwater/template-docker-golang-exec-build/settings/secrets/actions) `New repository secret` name `DOCKERHUB_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
+
 - change `DOCKER_IMAGE_PLATFORMS: linux/amd64,linux/arm64/v8` to your need [docker buildx](https://docs.docker.com/buildx/working-with-buildx/)
   - also change `jobs.docker-image-buildx.strategy.matrix.docker_image.[platform]` same as `DOCKER_IMAGE_PLATFORMS`
 - change `push_remote_flag: ${{ github.event.pull_request.merged == true }}` to let latest tag push to docker hub
 
+
 ### env
 
-- minimum go version: go 1.18
+- minimum go image version: go 1.18
 - change `go 1.18`, `^1.18`, `1.18.10-buster`, `1.18.10` to new go version
 
 ### dev mode
