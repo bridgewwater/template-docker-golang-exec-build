@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.1.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.0.0...v1.1.0) (2024-04-26)
+
+### ✨ Features
+
+* change to use docker bake pipeline ([52a1a47e](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/52a1a47ead6f8244833ff7a5cdc4bd49ab11b57e)), feat [#2](https://github.com/bridgewwater/template-docker-golang-exec-build/issues/2)
+
+* add template-hub-user to change github docker cli ([f52fedd5](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/f52fedd540636741e31b2b09ff5fecf0d9930338))
+
+* add new bin path to let cli use more clear ([d930c22b](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/d930c22b516f26a5a77081ef5152f6eff1be8243))
+
+### 👷‍ Build System
+
+* remove docker-image-tag push_remote_flag: false for template ([b7da2c96](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/b7da2c9613871346da3fb8694f63825f02e9091a))
+
 ## 1.0.0 (2023-12-19)
 
 ### ✨ Features
