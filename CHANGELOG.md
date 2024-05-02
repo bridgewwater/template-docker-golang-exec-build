@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.2.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.1.0...v1.2.0) (2024-05-03)
+
+### ✨ Features
+
+* add .github/workflows/auto-merge-dependabot.yml ([4354bcb8](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/4354bcb8d26c17ab80ca5d96e9549a55029fabd9))
+
+### 👷‍ Build System
+
+* bump convention-change/conventional-version-check ([9a3b6f4a](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/9a3b6f4a70ecd67e56d258cf07e1eb3a1fa4c50c))
+
 ## [1.1.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.0.0...v1.1.0) (2024-04-26)
 
 ### ✨ Features
