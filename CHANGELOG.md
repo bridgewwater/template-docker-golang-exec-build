@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.3.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.2.0...v1.3.0) (2024-05-03)
+
+### ✨ Features
+
+* add `ocker-build-no-cache` args and update bake config ([ebdb7af7](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/ebdb7af759aac0c034a6ae24df6b6b991c40ceea))
+
 ## [1.2.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.1.0...v1.2.0) (2024-05-03)
 
 ### ✨ Features
