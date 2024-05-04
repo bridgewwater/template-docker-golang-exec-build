@@ -42,59 +42,67 @@ jobs:
     uses: ./.github/workflows/version.yml
     secrets: inherit
 
-  # docker-buildx-bake-hubdocker-latest:
-  #   name: docker-buildx-bake-hubdocker-latest
+  # docker-bake-basic-all-latest:
+  #   name: docker-bake-basic-all-latest
   #   needs:
   #     - version
   #   uses: ./.github/workflows/docker-buildx-bake-hubdocker-latest.yml
-  #   # if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
+  #   if: ${{ github.ref_type != 'tag' }}
   #   with:
   #     # push_remote_flag: ${{ github.ref == 'refs/heads/main' }}
   #     push_remote_flag: ${{ github.event.pull_request.merged == true }}
+  #     docker_bake_targets: 'image-basic'
   #   secrets:
   #     DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
 
-  docker-buildx-bake-multi-latest:
-    name: docker-buildx-bake-multi-latest
+  docker-bake-multi-basic-all-latest:
+    name: docker-bake-multi-basic-all-latest
     needs:
       - version
     uses: ./.github/workflows/docker-buildx-bake-multi-latest.yml
-    # if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
+    if: ${{ github.ref_type != 'tag' }}
     with:
       ghcr_package_owner_name: ${{ github.repository_owner }} # required for ghcr.io
       # push_remote_flag: ${{ github.ref == 'refs/heads/main' }}
       push_remote_flag: ${{ github.event.pull_request.merged == true }}
-      # push_remote_flag: true
+      docker_bake_targets: 'image-basic'
     secrets:
       DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
 
-  # docker-buildx-bake-hubdocker-tag:
-  #   name: docker-buildx-bake-hubdocker-tag
+  ### deploy tag start
+
+  # docker-bake-basic-all-tag:
+  #   name: docker-bake-basic-all-tag
   #   needs:
   #     - version
   #   uses: ./.github/workflows/docker-buildx-bake-hubdocker-tag.yml
   #   if: startsWith(github.ref, 'refs/tags/')
-  #   # with:
+  #   with:
+  #     docker_bake_targets: 'image-basic'
+  #     docker-metadata-flavor-suffix: '' # default is '', can add as: -alpine -debian
   #     # push_remote_flag: true # default is true
   #   secrets:
   #     DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
 
-  docker-buildx-bake-multi-tag:
-    name: docker-buildx-bake-multi-tag
+  docker-bake-multi-basic-all-tag:
+    name: docker-bake-multi-basic-all-tag
     needs:
       - version
     uses: ./.github/workflows/docker-buildx-bake-multi-tag.yml
     if: startsWith(github.ref, 'refs/tags/')
     with:
       ghcr_package_owner_name: ${{ github.repository_owner }} # required for ghcr.io
+      docker_bake_targets: 'image-basic'
+      docker-metadata-flavor-suffix: '' # default is '', can add as: -alpine -debian
       # push_remote_flag: true # default is true
     secrets:
       DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
 
+
   deploy-tag:
     needs:
       - version
-      - docker-buildx-bake-multi-tag
+      - docker-bake-multi-basic-all-tag
     name: deploy-tag
     uses: ./.github/workflows/deploy-tag.yml
     if: startsWith(github.ref, 'refs/tags/')
@@ -104,3 +112,5 @@ jobs:
       tag_name: ${{ needs.version.outputs.tag_name }}
       tag_changes: ${{ needs.version.outputs.cc_changes }}
       # download_artifact_name: foo-release
+
+  ### deploy tag end
