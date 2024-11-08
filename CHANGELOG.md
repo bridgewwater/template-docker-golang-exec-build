@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.4.2](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.1...v1.4.2) (2024-11-08)
+
+### 👷‍ Build System
+
+* update Alpine base image to 3.20.3 ([c31342b8](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/c31342b812758d882ba57aed0b5303c4610fcbd8))
+
 ## [1.4.1](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.0...v1.4.1) (2024-11-08)
 
 ### 📝 Documentation
