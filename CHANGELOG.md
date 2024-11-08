@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.4.1](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.0...v1.4.1) (2024-11-08)
+
+### 📝 Documentation
+
+* update contributing guidelines and code of conduct ([7e01964d](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/7e01964d62ed30063237baa5c1a7c9c5232f57f4))
+
+### 👷‍ Build System
+
+* bump docker/bake-action from 4 to 5 ([66d15fea](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/66d15fea7d1c0cc404b0d420a34cbc92e2a10caf))
+
 ## [1.4.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.3.0...v1.4.0) (2024-05-04)
 
 ### BREAKING CHANGE:
