@@ -29,10 +29,6 @@ $ sudo chmod +x /usr/local/bin/golang-project-temple-base
 $ golang-project-temple-base --help
 ```
 
-## source repo
-
-[https://github.com/bridgewwater/template-docker-golang-exec-build](https://github.com/bridgewwater/template-docker-golang-exec-build)
-
 ### todo-list
 
 - rename `bridgewwater/template-docker-golang-exec-build` to new github url
@@ -63,8 +59,13 @@ $ golang-project-temple-base --help
 - change `push_remote_flag: ${{ github.event.pull_request.merged == true }}` to let latest tag push to docker hub
 
 
+## source repo
+
+[https://github.com/bridgewwater/template-docker-golang-exec-build](https://github.com/bridgewwater/template-docker-golang-exec-build)
+
 ### env
 
+- parent image `alpine` version `3.20.3`
 - minimum go image version: go 1.18
 - change `go 1.18`, `^1.18`, `1.18.10-buster`, `1.18.10` to new go version
 

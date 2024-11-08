@@ -29,6 +29,7 @@ ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME =test-${ENV_INFO_DOCKER_REPOSITORY
 ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS =${INFO_TEST_BUILD_DOCKER_CONTAINER_ARGS}
 ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT =${INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT}
 
+.PHONY: dockerEnv
 dockerEnv:
 	@echo "== docker env print start"
 	@echo "ENV_INFO_DOCKER_REPOSITORY                     ${ENV_INFO_DOCKER_REPOSITORY}"
@@ -51,36 +52,61 @@ dockerEnv:
 	@echo ""
 	@echo "== docker env print end"
 
+.PHONY: dockerAllPull
 dockerAllPull:
 	docker pull ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE}
 
+.PHONY: dockerCleanImages
 dockerCleanImages:
 	(while :; do echo 'y'; sleep 3; done) | docker image prune
 
+.PHONY: dockerCleanPruneAll
 dockerCleanPruneAll:
 	(while :; do echo 'y'; sleep 3; done) | docker container prune
 	(while :; do echo 'y'; sleep 3; done) | docker image prune
 
+.PHONY: dockerRunContainerParentBuild
 dockerRunContainerParentBuild:
 	@echo "run rm container image: ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE}"
 	$(info docker run -d --rm --name ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER} ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE})
-	docker run ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_USER} -d --rm --name ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER} ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE} tail -f /dev/null
+	docker run ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_USER} \
+	--rm -it -d \
+	--entrypoint ${ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT} \
+	--name ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER} \
+	${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE}
 	@echo ""
 	@echo "-> run rm container name: ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER}"
 	@echo "-> into container use: docker exec -it ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER} ${ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT}"
 
+.PHONY: dockerRunContainerParentByUser
+dockerRunContainerParentByUser:
+	@echo "run rm container image: ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE} by now user"
+	docker run \
+	--user $$(id -u):$$(id -g) \
+	--rm -it -d \
+	--entrypoint ${ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT} \
+	--name ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER} \
+	${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE}
+	@echo ""
+	@echo "-> run rm container name: ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER}"
+	@echo "-> into container use: docker exec -it ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER} ${ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT}"
+
+.PHONY: dockerRmContainerParentBuild
 dockerRmContainerParentBuild:
 	-docker rm -f ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_CONTAINER}
 
+.PHONY: dockerPruneContainerParentBuild
 dockerPruneContainerParentBuild: dockerRmContainerParentBuild
 	-docker rmi -f ${ENV_INFO_TEST_BUILD_DOCKER_PARENT_IMAGE}
 
 # set export DOCKER_SCAN_SUGGEST=false to fix
 # Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+.PHONY: dockerTestBuildLatest
 dockerTestBuildLatest: export DOCKER_SCAN_SUGGEST=false
 dockerTestBuildLatest:
 	docker build --rm=true --tag ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG} --file ${ENV_INFO_TEST_BUILD_DOCKER_FILE} .
 
+.PHONY: dockerTestRunLatest
 dockerTestRunLatest:
 	docker image inspect --format='{{ .Created}}' ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}
 	$(warning you can change test docker run args at here for dev)
@@ -92,41 +118,57 @@ dockerTestRunLatest:
 	$(info docker run --rm -it --entrypoint ${ENV_INFO_TEST_BUILD_DOCKER_CONTAINER_ENTRYPOINT} --name ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME} ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG})
 	-docker inspect --format='{{ .State.Status}}' ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME}
 
+.PHONY: dockerTestLogLatest
 dockerTestLogLatest:
 	-docker logs ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME}
 
+.PHONY: dockerTestRmLatest
 dockerTestRmLatest:
 	-docker rm -f ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME}
 
+.PHONY: dockerTestRmiLatest
 dockerTestRmiLatest:
 	-docker rmi -f ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}
 
-dockerTestRestartLatest: dockerTestRmLatest dockerTestRmiLatest dockerTestBuildLatest dockerTestRunLatest
+.PHONY: dockerTestReBuildLatest
+dockerTestReBuildLatest: dockerTestRmLatest dockerTestRmiLatest dockerTestBuildLatest
+	@echo "re-build ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME} ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}"
+
+.PHONY: dockerTestRestartLatest
+dockerTestRestartLatest: dockerTestReBuildLatest dockerTestRunLatest
 	@echo "restart ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME} ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}"
 
+.PHONY: dockerTestStopLatest
 dockerTestStopLatest: dockerTestRmLatest dockerTestRmiLatest
 	@echo "stop and remove ${ENV_INFO_TEST_TAG_BUILD_DOCKER_CONTAINER_NAME} ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}"
 
+.PHONY: dockerTestPruneLatest
 dockerTestPruneLatest: dockerTestStopLatest
 	@echo "prune and remove ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}"
 
+.PHONY: dockerRmiBuild
 dockerRmiBuild:
 	-docker rmi -f ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}
 	-docker rmi -f ${ENV_INFO_PRIVATE_DOCKER_REGISTRY}${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}
 
+.PHONY: dockerBuild
 dockerBuild:
 	docker build --rm=true --tag ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG} --file ${ENV_INFO_BUILD_DOCKER_FILE} .
 
+.PHONY: dockerTag
 dockerTag:
 	docker tag ${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG} ${ENV_INFO_PRIVATE_DOCKER_REGISTRY}${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}
 
+.PHONY: dockerBeforePush
 dockerBeforePush: dockerRmiBuild dockerBuild dockerTag
 	@echo "===== then now can push to ${ENV_INFO_PRIVATE_DOCKER_REGISTRY}"
 
+.PHONY: dockerPushBuild
 dockerPushBuild: dockerBeforePush
 	docker push ${ENV_INFO_PRIVATE_DOCKER_REGISTRY}${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}
 	@echo "=> push ${ENV_INFO_PRIVATE_DOCKER_REGISTRY}${ENV_INFO_BUILD_DOCKER_SOURCE_IMAGE}:${ENV_INFO_BUILD_DOCKER_TAG}"
 
+.PHONY: helpDocker
 helpDocker:
 	@echo "=== this make file can include MakeImage.mk then use"
 	@echo "- must has file: [ ${ENV_INFO_BUILD_DOCKER_FILE} ${ENV_INFO_TEST_BUILD_DOCKER_FILE}" ]
@@ -144,9 +186,13 @@ helpDocker:
 	@echo ""
 	@echo "- then use to show how to build docker parent image"
 	@echo "$$ make dockerRunContainerParentBuild"
+	@echo "- or run and check parent image user"
+	@echo "$$ make dockerRunContainerParentByUser"
 	@echo "- and prune resource at parent image"
 	@echo "$$ make dockerPruneContainerParentBuild"
 	@echo ""
+	@echo "- test build image use ./${ENV_INFO_TEST_BUILD_DOCKER_FILE}"
+	@echo "$$ make dockerTestReBuildLatest"
 	@echo "- test run container use ./${ENV_INFO_TEST_BUILD_DOCKER_FILE}"
 	@echo "$$ make dockerTestRestartLatest"
 	@echo "- prune test container and image"

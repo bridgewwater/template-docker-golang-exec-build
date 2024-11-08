@@ -38,7 +38,7 @@ RUN CGO_ENABLED=0 \
   ${GO_ENV_ROOT_BUILD_ENTRANCE}
 
 # https://hub.docker.com/_/alpine
-FROM alpine:3.19
+FROM alpine:3.20.3
 
 ARG DOCKER_CLI_VERSION=${DOCKER_CLI_VERSION}
 ARG GO_ENV_PACKAGE_NAME=github.com/bridgewwater/golang-project-temple-base
