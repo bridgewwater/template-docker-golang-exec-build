@@ -46,7 +46,7 @@ $ golang-project-temple-base --help
 - rename docker hub `template-hub-user/template-docker-golang-exec-build` to new docker image name
 
 - rename docker repo name at `docker-bake.hcl`
-    - `template-docker-runtime-alpine` to new docker image name
+    - `template-docker-golang-exec-build` to new docker image name
     - `image-all` to change `platforms`
 
 - use github action for this workflow push to docker hub, must add
