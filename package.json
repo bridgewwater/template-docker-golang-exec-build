@@ -1,6 +1,6 @@
 {
   "name": "template-docker-golang-exec-build",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bridgewwater/template-docker-golang-exec-build.git"

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.4.3](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.2...v1.4.3) (2025-02-03)
+
+### 📝 Documentation
+
+* correct docker image name in README ([1dbafd55](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/1dbafd55404cfd290e17472d22d271d388941bba))
+
+### 👷‍ Build System
+
+* update bake-action to v6 and add build timeout ([4beeec0e](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/4beeec0eb8938c4bf40bef7dd4ed6973902ea3cb)), feat [#9](https://github.com/bridgewwater/template-docker-golang-exec-build/issues/9)
+
 ## [1.4.2](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.1...v1.4.2) (2024-11-08)
 
 ### 👷‍ Build System
