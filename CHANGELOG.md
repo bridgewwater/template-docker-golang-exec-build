@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.5.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.4.3...v1.5.0) (2025-05-22)
+
+### ✨ Features
+
+* update Docker Buildx bake workflows ([8c36fd4d](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/8c36fd4dc8ea080fa2d5ee662c8d46cbe9882cfa))
+
+### 👷‍ Build System
+
+* update golang base image to 1.18.10 ([fe08c77d](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/fe08c77d087780f953b147aef546c8228ecff32d))
+
 ## [1.4.3](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.4.2...v1.4.3) (2025-02-03)
 
 ### 📝 Documentation
