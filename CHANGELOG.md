@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
-## [1.4.3](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.2...v1.4.3) (2025-02-03)
+## [1.4.3](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.4.2...v1.4.3) (2025-02-03)
 
 ### 📝 Documentation
 
@@ -12,13 +12,13 @@ All notable changes to this project will be documented in this file. See [conven
 
 * update bake-action to v6 and add build timeout ([4beeec0e](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/4beeec0eb8938c4bf40bef7dd4ed6973902ea3cb)), feat [#9](https://github.com/bridgewwater/template-docker-golang-exec-build/issues/9)
 
-## [1.4.2](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.1...v1.4.2) (2024-11-08)
+## [1.4.2](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.4.1...v1.4.2) (2024-11-08)
 
 ### 👷‍ Build System
 
 * update Alpine base image to 3.20.3 ([c31342b8](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/c31342b812758d882ba57aed0b5303c4610fcbd8))
 
-## [1.4.1](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.4.0...v1.4.1) (2024-11-08)
+## [1.4.1](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.4.0...v1.4.1) (2024-11-08)
 
 ### 📝 Documentation
 
@@ -28,7 +28,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * bump docker/bake-action from 4 to 5 ([66d15fea](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/66d15fea7d1c0cc404b0d420a34cbc92e2a10caf))
 
-## [1.4.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.3.0...v1.4.0) (2024-05-04)
+## [1.4.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.3.0...v1.4.0) (2024-05-04)
 
 ### BREAKING CHANGE:
 
@@ -38,13 +38,13 @@ All notable changes to this project will be documented in this file. See [conven
 
 * support `docker_bake_targets` ([15b9b5f6](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/15b9b5f64bf58baf243e9f0b282e369cc2793bb7)), feat [#5](https://github.com/bridgewwater/template-docker-golang-exec-build/issues/5)
 
-## [1.3.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.2.0...v1.3.0) (2024-05-03)
+## [1.3.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.2.0...v1.3.0) (2024-05-03)
 
 ### ✨ Features
 
 * add `ocker-build-no-cache` args and update bake config ([ebdb7af7](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/ebdb7af759aac0c034a6ae24df6b6b991c40ceea))
 
-## [1.2.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.1.0...v1.2.0) (2024-05-03)
+## [1.2.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.1.0...v1.2.0) (2024-05-03)
 
 ### ✨ Features
 
@@ -54,7 +54,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * bump convention-change/conventional-version-check ([9a3b6f4a](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/9a3b6f4a70ecd67e56d258cf07e1eb3a1fa4c50c))
 
-## [1.1.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/1.0.0...v1.1.0) (2024-04-26)
+## [1.1.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.0.0...v1.1.0) (2024-04-26)
 
 ### ✨ Features
 
