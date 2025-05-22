@@ -3,7 +3,7 @@
 # Author: template-hub-user
 # dockerfile offical document https://docs.docker.com/engine/reference/builder/
 # https://hub.docker.com/_/golang
-FROM golang:1.18.10-buster as builder
+FROM golang:1.18.10-buster AS golang-builder
 
 ARG GO_PKG_RELEASE_VERSION=2.1.0
 ARG GO_ENV_PACKAGE_NAME=github.com/bridgewwater/golang-project-temple-base
@@ -40,7 +40,7 @@ RUN CGO_ENABLED=0 \
 # https://hub.docker.com/_/alpine
 FROM alpine:3.20.3
 
-ARG DOCKER_CLI_VERSION=${DOCKER_CLI_VERSION}
+# ARG DOCKER_CLI_VERSION=${DOCKER_CLI_VERSION}
 ARG GO_ENV_PACKAGE_NAME=github.com/bridgewwater/golang-project-temple-base
 ARG GO_ENV_ROOT_BUILD_BIN_NAME=golang-project-temple-base
 ARG GO_ENV_ROOT_BUILD_BIN_PATH=build/${GO_ENV_ROOT_BUILD_BIN_NAME}
@@ -54,6 +54,6 @@ ARG GO_PATH_SOURCE_DIR=/go/src
 RUN mkdir /app
 WORKDIR /app
 
-COPY --from=builder ${GO_PATH_SOURCE_DIR}/${GO_ENV_PACKAGE_NAME}/${GO_ENV_ROOT_BUILD_BIN_PATH} /bin/
+COPY --from=golang-builder ${GO_PATH_SOURCE_DIR}/${GO_ENV_PACKAGE_NAME}/${GO_ENV_ROOT_BUILD_BIN_PATH} /bin/
 ENTRYPOINT [ "golang-project-temple-base" ]
 # CMD ["golang-project-temple-base", "--help"]
