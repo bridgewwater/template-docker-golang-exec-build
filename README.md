@@ -67,7 +67,7 @@ $ golang-project-temple-base --help
 
 - parent image `alpine` version `3.20.3`
 - minimum go image version: go 1.18
-- change `go 1.18`, `^1.18`, `1.18.10-buster`, `1.18.10` to new go version
+- change `go 1.18`, `^1.18`, `1.18.10`, `1.18.10` to new go version
 
 ### dev mode
 

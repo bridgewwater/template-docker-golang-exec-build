@@ -3,7 +3,7 @@
 # Author: template-hub-user
 # dockerfile offical document https://docs.docker.com/engine/reference/builder/
 # https://hub.docker.com/_/golang
-FROM golang:1.18.10-buster AS golang-builder
+FROM golang:1.18.10 AS golang-builder
 
 ARG GO_PKG_RELEASE_VERSION=2.1.0
 ARG GO_ENV_PACKAGE_NAME=github.com/bridgewwater/golang-project-temple-base
