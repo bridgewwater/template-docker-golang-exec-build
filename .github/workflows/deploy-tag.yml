@@ -29,6 +29,12 @@ on:
         required: false
         type: string
 
+      dockerhub_description_path:
+        description: 'dockerhub description update path'
+        default: 'README.md'
+        required: false
+        type: string
+
 permissions: # https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#permissions
   contents: write
   discussions: write
@@ -76,3 +82,12 @@ jobs:
           #   **/*.zip
           #   **/*.tar.gz
           #   **/*.sha256
+
+      - name: Docker Hub Description
+        # https://github.com/marketplace/actions/docker-hub-description
+        uses: peter-evans/dockerhub-description@v5
+        with:
+          username: ${{ vars.ENV_DOCKERHUB_OWNER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ vars.ENV_DOCKERHUB_OWNER }}/${{ vars.ENV_DOCKERHUB_REPO_NAME }}
+          readme-filepath: ${{ inputs.dockerhub_description_path }}
