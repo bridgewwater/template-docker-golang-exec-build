@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.7.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.6.0...v1.7.0) (2025-12-31)
+
+### ✨ Features
+
+* add Docker Hub description update functionality ([5793bc3e](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/5793bc3ec93e81ed3e95129e79f09dc5d35f41bd))
+
 ## [1.6.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.5.0...v1.6.0) (2025-12-29)
 
 ### ✨ Features
