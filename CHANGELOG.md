@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.9.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.8.0...v1.9.0) (2026-03-07)
+
+### ✨ Features
+
+* enhance meta bake definition file processing ([08faf581](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/08faf5816f9d8ead85ee1e5b88930ab20ee80ecc))
+
 ## [1.8.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.7.0...v1.8.0) (2026-01-02)
 
 ### ✨ Features
