@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.11.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.10.0...v1.11.0) (2026-09-28)
+
+### ✨ Features
+
+* update Go and Alpine base images ([83ddc318](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/83ddc318dec24725e7b09e402faaf16dd460f02c))
+
 ## [1.10.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.9.0...v1.10.0) (2026-06-12)
 
 ### ✨ Features
