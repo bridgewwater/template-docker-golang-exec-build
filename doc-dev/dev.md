@@ -34,9 +34,9 @@
 
 ### env
 
-- parent image `alpine` version `3.20.3`
-- minimum go image version: go 1.18
-- change `go 1.18`, `^1.18`, `1.18.10`, `1.18.10` to new go version
+- parent image `alpine` version `3.21.8`
+- minimum go image version: go 1.25
+- change `go 1.25`, `^1.25`, `1.25.12` to new go version
 
 ### dev mode
 

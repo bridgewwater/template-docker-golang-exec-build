@@ -3,7 +3,7 @@
 # Author: template-hub-user
 # dockerfile offical document https://docs.docker.com/engine/reference/builder/
 # https://hub.docker.com/_/golang
-FROM golang:1.18.10 AS golang-builder
+FROM golang:1.25.12 AS golang-builder
 
 ARG GO_PKG_RELEASE_VERSION=2.1.0
 ARG GO_ENV_PACKAGE_NAME=github.com/bridgewwater/golang-project-temple-base
@@ -34,7 +34,7 @@ RUN CGO_ENABLED=0 \
   ${GO_ENV_ROOT_BUILD_ENTRANCE}
 
 # https://hub.docker.com/_/alpine
-FROM alpine:3.20.3
+FROM alpine:3.21.8
 
 # ARG DOCKER_CLI_VERSION=${DOCKER_CLI_VERSION}
 ARG GO_ENV_PACKAGE_NAME=github.com/bridgewwater/golang-project-temple-base
