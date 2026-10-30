@@ -69,7 +69,7 @@ jobs:
 
       -
         name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       -
         name: Create matrix
         id: platforms
@@ -98,7 +98,7 @@ jobs:
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
       -
         name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       -
         name: Docker meta
         id: meta
@@ -111,7 +111,7 @@ jobs:
             type=raw,value=latest,enable=true
           flavor: |
             latest=auto
-            suffix=${{ inputs.docker-metadata-flavor-suffix }}
+            suffix=${{ inputs.docker-metadata-flavor-suffix }},onlatest=true
 
       -
         name: Rename meta bake definition file
@@ -131,7 +131,7 @@ jobs:
 
       -
         name: Upload meta bake definition
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         if: ${{ inputs.push_remote_flag }}
         with:
           name: bake-latest-meta-${{ github.run_id }}-${{ github.run_attempt }}-${{ inputs.docker_bake_targets }}-${{ env.PLATFORM_PAIR }}
@@ -210,7 +210,7 @@ jobs:
 
       -
         name: Upload digest
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         if: ${{ inputs.push_remote_flag }}
         with:
           name: digests-latest-${{ github.run_id }}-${{ github.run_attempt }}-${{ inputs.docker_bake_targets }}-${{ env.PLATFORM_PAIR }}
@@ -222,9 +222,10 @@ jobs:
       -
         name: check temp config files
         run: |
-          ls -al ${{ runner.temp }}/${{ inputs.docker_bake_targets}}
-          ls -al ${{ runner.temp }}/${{ inputs.docker_bake_targets}}/digests/
-
+          echo "Attempted tags:"
+          jq -r '.target."docker-metadata-action".tags[]' "${{ runner.temp }}/${{ inputs.docker_bake_targets }}/bake-meta.json"
+          ls -al ${{ runner.temp }}/${{ inputs.docker_bake_targets }}
+          ls -al ${{ runner.temp }}/${{ inputs.docker_bake_targets }}/digests/
 
   merge:
     runs-on: ubuntu-latest
@@ -241,7 +242,7 @@ jobs:
 
       -
         name: Download meta bake definition
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           # name: bake-meta
           ## https://github.com/actions/download-artifact/tree/v4?tab=readme-ov-file#breaking-changes
@@ -251,7 +252,7 @@ jobs:
 
       -
         name: Download digests
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           # name: digests
           ## https://github.com/actions/download-artifact/tree/v4?tab=readme-ov-file#breaking-changes
@@ -262,6 +263,8 @@ jobs:
       -
         name: check temp config files
         run: |
+          echo "Attempted tags:"
+          jq -r '.target."docker-metadata-action".tags[]' "${{ runner.temp }}/${{ inputs.docker_bake_targets }}/bake-meta.json"
           ls -al ${{ runner.temp }}/${{ inputs.docker_bake_targets }}
           ls -al ${{ runner.temp }}/${{ inputs.docker_bake_targets }}/digests/
 
