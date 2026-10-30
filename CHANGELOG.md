@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.12.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.11.0...v1.12.0) (2026-10-31)
+
+### ✨ Features
+
+* add onlatest flag and improve logging for Docker metadata actions ([19cdb9fb](https://github.com/bridgewwater/template-docker-golang-exec-build/commit/19cdb9fb7aa94557ee471a7fc2e8dbfbf0466e87))
+
 ## [1.11.0](https://github.com/bridgewwater/template-docker-golang-exec-build/compare/v1.10.0...v1.11.0) (2026-09-28)
 
 ### ✨ Features
